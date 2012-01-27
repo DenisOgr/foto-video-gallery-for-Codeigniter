@@ -1,0 +1,170 @@
+/* 
+
+*/
+
+root { 
+    display: block;
+}
+body{
+    font-family: Calibri, Verdana,Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin:0;
+    background-color: #FFFFFF;
+    color: #474747;
+}
+td,p,div{
+color: #474747;/*gery light*/
+font-size: 12px;
+}
+a{
+color: #000000;
+text-decoration: underline;
+}
+a:hover{
+color: #e62525;/*red*/
+text-decoration: underline;
+
+}
+img{
+    border: none;
+}
+.clear{
+    clear: both;
+}
+#container{
+    margin: 0 20px;
+}
+/****************** ŒÕ“≈…Õ≈–€ ƒÀﬂ ‘Œ“Œ » ¬»ƒ≈Œ****************/
+.foto-cont{
+    width: 33%;
+    height: 245px;
+    text-align: center;
+    margin:  10px 0 20px;
+    float: left;
+    line-height: 20px;
+    font-size: 12px;
+}
+.line{
+    width: 97%;
+    height: 1px;
+    border-top: 1px solid #d8d8d8;
+    text-align: center;
+    margin: 30px auto 20px;
+    clear: both;
+    
+}
+.foto-cont-mini{
+    float: left;   
+    margin: 10px 20px;
+}
+ ul.gallery{
+    margin: 0;
+    padding: 0;     
+    overflow: hidden;
+    
+ }
+ ul.gallery li{
+    list-style: none;
+    display: inline;
+    text-align: center;
+  
+ }
+  
+  ul.gallery li a{
+   color: #474747;
+   text-decoration: none; 
+   font-size: 14px;
+  }
+  
+  ul.gallery li a:hover{
+   color: #232222;
+   text-decoration: none; 
+   font-size: 14px;
+  }
+ 
+ .bold{
+    font-size: 16px;
+    font-weight: bold;
+ }
+ 
+   /**************√¿ÀÀ≈–≈ﬂ*************************/
+ ul#gallery-dir{    
+    overflow: hidden;
+    width: 650px;
+    padding: 0;
+    margin: 0 0 0 20px;
+    text-align: center;
+ }
+ #gallery-dir li{
+    list-style-type: none;
+    display: block;
+    float: left;
+    margin: 10px 10px;
+ }
+ .get-img{
+    width: 670px;
+    margin-bottom: 10px;
+ }
+ ul#gallery-photo{
+    margin: 40px 0 0 25px;
+    padding: 0;   
+    overflow: hidden;
+    width: 670px;
+ }
+ ul#gallery-photo li{
+    width: 200px;
+    text-align: center;
+    float: left;
+    list-style-type: none;
+    margin-bottom: 10px;
+ }
+ 
+  /**************ƒŒœŒÀÕ»“≈À‹Õ€≈ ›À≈Ã≈Õ“€****************/
+ 
+  #forma input,#forma textarea{
+    width: 350px;    
+ } 
+ #addContent tr.head {
+    text-align: center;
+    font-weight: bold;
+    background-color: #dfdfdf;
+    border:1px solid 
+ }
+ .hight-input{
+    background-color: #fdec85;
+ }
+ 
+.myPopup{
+    width: 350px;
+     background-color: #000000;
+    min-height: 50px;
+    padding: 20px;
+    color: #ffffff;
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    font-size: 13px;
+    border: 1px solid grey;
+     -moz-border-radius: 10px; /* Firefox */
+     -webkit-border-radius: 10px; /* Safari, Chrome */
+     -khtml-border-radius: 10px; /* KHTML */
+     border-radius: 10px; /* CSS3 */
+     font-weight: bold;
+     
+  }
+  a span.title:hover {
+    text-decoration: underline;
+    color: red;
+  }
+ .hint{
+    font-size: 11px;
+    font-style: italic;
+    color: #7f7f7f;
+ }  
+   
+ 
+
+.input-error{
+    border: 1px solid #ff0012;
+    background-color: #ffb9be;
+}
