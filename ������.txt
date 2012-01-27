@@ -1,0 +1,1 @@
+$code=htmlspecialchars(mysql_real_escape_string(strip_tags(substr($code,0,100))), ENT_QUOTES); 
