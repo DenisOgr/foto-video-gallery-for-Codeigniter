@@ -1,6 +1,7 @@
 <?php 
 /**
- * Gallery Class
+ * 
+ *Gallery Class
  *
  * @category Controllers
  * @author	Porplenko Denis
@@ -24,17 +25,17 @@ class Gallery extends CI_Controller
          
   }  
   
- /*****************************РАБОТА С ПАПКАМИ******************************************************/ 
+ /*****************************пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ******************************************************/ 
      
-     //Функция, которая выводит папки из галлереи
-     //Параметр img - папки только с картинками
-     //Параметр video - папки с видеороликами      
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ img - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ video - пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ      
      public function viewDir($type='img')
         {       
          
          $data=array();  
          $data['type'] = $type;  
-         $data['name_admin_cat']=($type=='img')?'Галлерея фото':'Гллерея видео'; 
+         $data['name_admin_cat']=($type=='img')?'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ':'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'; 
          $data['dir_list']=$this->gallery_model->get_dir($type); 
          $name='gallery_dir';  
          $this->display_lib->page($data,$name);
@@ -43,13 +44,13 @@ class Gallery extends CI_Controller
       
       
       
-    //Функция, которая добавляет папку в галлерею
-     //Параметр img - папки только с картинками
-     //Параметр video - папки с видеороликами     
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ img - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ video - пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ     
      public function addDir($type='img')
        {
          $result_text='';
-         $data['name_admin_cat']='Галлерея';  
+         $data['name_admin_cat']='пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';  
          $data['type'] = $type;  
          $name='gallery_dir';         
          
@@ -70,15 +71,15 @@ class Gallery extends CI_Controller
                 
                      if(empty($array_img['error']))
                           {
-                           $result_text.="Фотография '".$_POST['name']."' загрузилась успешно!<br>";  
-                           //Формирую превьюшку              
+                           $result_text.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$_POST['name']."' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";  
+                           //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ              
                                  $this->load->library('image_lib'); 
                                  $unic_pre=time().mt_rand(0,1000);
                                  $small_file = $array_img[0]['raw_name']."_".$unic_pre."_thumb".$array_img[0]['file_ext']; 
-                                 $config['image_library'] = 'gd2'; // выбираем библиотеку
+                                 $config['image_library'] = 'gd2'; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                  $config['source_image'] = $array_img[0]['full_path']; 
                                  $config['new_image'] = FCPATH.'/upload/_tumb/'.$small_file; 
-                                 $config['maintain_ratio'] = TRUE; // сохранять пропорции
+                                 $config['maintain_ratio'] = TRUE; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                  $config['width'] = $this->config->item('gallery_dir_w');
                                  $config['height'] = $this->config->item('gallery_dir_h');;
                                  $this->image_lib->initialize($config);
@@ -91,12 +92,12 @@ class Gallery extends CI_Controller
                           } 
                           else
                           {
-                        $result_text.="Фотография '".$_POST['name']." 'не загрузилась!<br>";
+                        $result_text.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$_POST['name']." 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";
                           } 
          }
          else
              {
-             $result_text.= '<br>У Вас ошибки при вводе информации. <br>Будьте внимательны!';  
+             $result_text.= '<br>пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. <br>пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!';  
              }
              
             
@@ -111,24 +112,24 @@ class Gallery extends CI_Controller
 
 
   
-    //Функция показывает содержимое папок
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public function view($idDir)
     { 
         $data = array();      
         
         $data['id_dir']=(int)$idDir;
        
-       //Выбираю данные по папке из БД
+       //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
         $data['section']= $this->gallery_model->getSelection($idDir);    
        
   
         if(!empty($data['section']))
         {
-            //Выбираю контент из папки.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
              $data['content_list'] = $this->gallery_model->getGallery($idDir);
               
-            //Вывожу в разных видах в зависимости от папки 
-            //Если ы папке нет, также выводу в разном виде       
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+            //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ       
            switch($data['section']['type'])
            {    
                 case('img'):
@@ -158,8 +159,8 @@ class Gallery extends CI_Controller
   
   
   
-   //функция возвразает данные об папке 
-  //в виде формы для редактирования  
+   //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+  //пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  
    public function getNameDir($content_id)
    {
     
@@ -170,33 +171,33 @@ class Gallery extends CI_Controller
     {
         printf(' 
         <div id="forma">
-        <h1 class="title" >Редактирование</h1>
+        <h1 class="title" >пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</h1>
              <form action="%sgallery/reNameDir/%s" name="newDir" method="post">
-             <label> Название</label></br>
+             <label> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</label></br>
              <input type="text" name="name"  value="%s" /></br></br> 
              
-             <input type="submit" value="Изменить" name="send_new_dir"/>         
+             <input type="submit" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" name="send_new_dir"/>         
                </form><br><br>
-                <a href="%sgallery/deleteDir/%s" style="color:red">Удалить папку</a></div>',
+                <a href="%sgallery/deleteDir/%s" style="color:red">пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</a></div>',
                  base_url(),$data['section_id'],$data['name'],base_url(),$data['section_id'] );   
               
    }
    else
    {
-    echo "У нас нет такой папки!";
+    echo "пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!";
    }
    }  
     
    
-   //Функция изменяет название и описание папки 
+   //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
   public function reNameDir($section_id)
       {
         $data = array();            
         
-        //Выбираю все данные по этой папке, что бы узнать ее тип
-        // и в результате вывести все папки этого типа
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
+        // пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         $dataById = $this->gallery_model->getSelection($section_id); 
-        $data['name_admin_cat']=($dataById['type']=='img')?'Галлерея фото':'Галлерея видео';
+        $data['name_admin_cat']=($dataById['type']=='img')?'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ':'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ';
         $data['type'] = $dataById['type']; 
      
      if($this->form_validation->run('addDir')==TRUE)
@@ -208,7 +209,7 @@ class Gallery extends CI_Controller
      {
        $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules'));      
      }
-         //Выбираю папки из галлереи.
+         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
          $data['dir_list']=$this->gallery_model->get_dir($dataById['type']);    
          $name='gallery_dir'; 
           $this->display_lib->page($data,$name,$popup_info);  
@@ -217,34 +218,34 @@ class Gallery extends CI_Controller
     }   
         
          
-         //функция удаляет целую папку с видео/картинками/контентом
+         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
      	public function deleteDir($section_id)
             {
                  $data = array();
                
-                 //Выбираю все данные по этой папке, что бы узнать ее тип
-                // и в результате вывести все папки этого типа
+                 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
+                // пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                 $dataById = $this->gallery_model->getSelection($section_id);
-               //есть ли такая папка?
+               //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ?
                 if(!empty($dataById['type']))
                 {
-                 //Выбираю все записи, что бы в цикле удалить все картинки c сервера
+                 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 $dataAllCont = $this->gallery_model->getGallery($section_id);
-                   //удаляю картинки
+                   //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                    foreach($dataAllCont as $item)
                         {
                          unlink(DROOT.'/upload/_tumb/'.$item['file_tmp']);
                          ($dataById['type']=='img')?unlink(DROOT.'/upload/real/'.$item['file']):false;         
                         }
-                   //удаляю записи в БД
+                   //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
                       $this->gallery_model->deleteAllById($section_id); 
-                    //удаляю картинку папки
+                    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                      unlink(DROOT.'/upload/_tumb/'.$dataById['file_tmp']);  
-                    //удаляю запись о папке изБД
+                    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                     $this->gallery_model->deleteDir($section_id);          
                    
                     $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_result_title'),'popup_text'=>$this->lang->line('gallery_msg_true_delete_dir'));
-                    $data['name_admin_cat']=($dataById['type']=='img')?'Галлерея фото':'Галлерея видео';
+                    $data['name_admin_cat']=($dataById['type']=='img')?'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ':'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ';
                     $data['dir_list']=$this->gallery_model->get_dir($dataById['type']);    
                     $data['type'] = $dataById['type']; 
                     $name='gallery_dir'; 
@@ -261,10 +262,10 @@ class Gallery extends CI_Controller
     
 
 
- /*****************************РАБОТА С КОНТЕНТОМ(ФОТО, ВИДЕО)****************Ы******************************/ 
+ /*****************************пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ)****************пїЅ******************************/ 
   
-     //функция возвразает данные об картинке или видео файле
-   //в виде формы для редактирования.   
+     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+   //пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.   
    public function getName($content_id)
    {    
      
@@ -280,12 +281,12 @@ class Gallery extends CI_Controller
              printf('<div id="forma">
              <h1 class="title" >Edit</h1>
              <form action="%sgallery/reNameContent/%s" name="newDir" method="post">
-             <label> Название </label></br>
+             <label> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ </label></br>
              <input type="text" name="name" value="%s" /></br></br>
              
-             <input type="submit" value="Изменить" name="send_new_dir"/>         
+             <input type="submit" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" name="send_new_dir"/>         
                </form><br><br>
-                <a href="%sgallery/delete/%s" style="color:red">Удалить картинку</a></div>',
+                <a href="%sgallery/delete/%s" style="color:red">пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</a></div>',
                 base_url(),$data['gid'],$data['name'],base_url(),$data['gid'] );   
                 break;
             }
@@ -293,17 +294,17 @@ class Gallery extends CI_Controller
            case 'video':
            {  
             printf(' <div id="forma">
-            <h1 class="title" >Редактирование</h1>
+            <h1 class="title" >пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</h1>
              <form action="%sgallery/reNameContent/%s" name="newDir" method="post">
-             <label> Название</label></br>
+             <label> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</label></br>
              <input type="text" name="name" value="%s" /></br></br>            
              
-             <label> Ссылка на видео</label></br>
+             <label> пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</label></br>
              <textarea cols="20" rows="4" name="code" >%s</textarea></br></br>
            
-            <input type="submit" value="Изменить" name="send_new_dir"/>         
+            <input type="submit" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" name="send_new_dir"/>         
             </form><br><br>
-            <a href="%sgallery/delete/%s" style="color:red">Удалить видеоролик</a></div>',
+            <a href="%sgallery/delete/%s" style="color:red">пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</a></div>',
             base_url(),$data['gid'],$data['name'],$data['code'],base_url(),$data['gid'] );      
        break; 
            }
@@ -312,7 +313,7 @@ class Gallery extends CI_Controller
    }
  else
    {
-    echo "У нас нет такой контента!";
+    echo "пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
    }
    }  
    
@@ -324,20 +325,20 @@ class Gallery extends CI_Controller
         
         $data = array(); 
         $content_id = (int)$content_id;
-        //Выбираю все данные по данному контенту, что бы узнать его section_id 
-        //(ID папки в которой он находится, что бы в результате 
-        //вывести весь контент папки)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ section_id 
+        //(ID пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
         $dataById = $this->gallery_model->getDataById($content_id);       
        
-        //есть ли такая запись в галлереи?
+        //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
         if(!empty($dataById['section_id']))
               {
-                //Выбираю данные по папке из БД
+                //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
                  $data['section']= $this->gallery_model->getSelection($dataById['section_id']);  
-                //есть ли такая папка?
+                //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ?
                 if(!empty($data['section']['type']))
                    {
-                        //делаю  проверку на тип котента, что после переименования выводит  определенный   вид
+                        //пїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅ
                          switch($data['section']['type'])
                          {
                               case 'img':
@@ -365,27 +366,27 @@ class Gallery extends CI_Controller
                                $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules') );       
                              }
             
-                             //Выбираю контент из папки.                     
+                             //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.                     
                              $data['content_list'] = $this->gallery_model->getGallery($dataById['section_id']); 
                              $data['id_dir'] = $dataById['section_id'];
                    
                      }
                      else
                      {
-                        //сообщение, что нет папки
+                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                         $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_dir') );  
                         $name='gallery_dir';
-                        //выбираю папки с картинками
+                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                         $data['dir_list']=$this->gallery_model->get_dir('img'); 
                      }
     
          }
          else
           {
-           //сообщение, что нет указанного контента
+           //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
            $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_content') );   
            $name='gallery_dir';
-           //выбираю папки с картинками
+           //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
            $data['dir_list']=$this->gallery_model->get_dir('img');   
           }
          
@@ -395,22 +396,22 @@ class Gallery extends CI_Controller
     
     
     
-  //Функция загружает фото на сервер, делает превьи и пишет  запись в БД
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
     public function uploadImg($dir='')
     {     
          $data=array();            
          $data['id_dir']=(int)$dir;
          $name='foto/add';  
        
-        //Выбираю данные по папке из БД
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
          $data['section']= $this->gallery_model->getSelection($dir);  
-        //есть папка, в которую заливать картинки?
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
         if(!empty($data['section']))
              {
-             //есть ошибки при вводе данных?
+             //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ?
              if($this->form_validation->run('addImg')==TRUE)
                     {
-                          //Заливаю картинку   впапку temp       
+                          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅпїЅпїЅпїЅ temp       
                              $config['upload_path'] = './upload/temp/';
                              $config['allowed_types'] = 'gif|jpg|png|jpeg';
                             // $config['allowed_types'] = '*';
@@ -424,19 +425,19 @@ class Gallery extends CI_Controller
                           
                             $result='';
                             $i=0;
-                            //указал ли пользователь вообще файлы с картинками?
+                            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
                             if(!empty($array_img))
                             {                              
                               $array_name=$this->input->post('name');
-                                //смотрю массив результатов при заливке фото
+                                //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                                 $this->load->library('image_lib'); 
                                 foreach($array_img as $item)
                                 {
                                   
                                   if(empty($item['error']))
                                   {
-                                    $result.="Фотография '".$array_name[$i]."' загрузилась успешно!<br>";  
-                                         //Формирую превьюшку
+                                    $result.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$array_name[$i]."' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";  
+                                         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                          $unic_pre=time().mt_rand(0,1000);
                                          $small_file = $item['raw_name']."_".$unic_pre."_thumb".$item['file_ext'];
                                          $config['image_library'] = 'gd2'; 
@@ -450,16 +451,16 @@ class Gallery extends CI_Controller
                                          $this->image_lib->resize();              
                                        
                                        
-                                        //Формирую  обычную картинку                                         
+                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                         
                                          $real_file = $item['raw_name']."_".$unic_pre.$item['file_ext'];
                                          $config['new_image'] = FCPATH.'/upload/real/'.$real_file; 
-                                         $config['maintain_ratio'] = TRUE; // сохранять пропорции   
+                                         $config['maintain_ratio'] = TRUE; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   
                                          $config['width'] = $this->config->item('gallery_real_w'); 
                                          $config['height'] = $this->config->item('gallery_real_h');  
                                          $this->image_lib->initialize($config);
                                          $this->image_lib->resize();  
                                        
-                                        //Формирую данные для записи в БД 
+                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ 
                                         $dataInsert=array(
                                         'section_id'=>$dir,
                                         'type'=> $data['section']['type'],
@@ -468,16 +469,16 @@ class Gallery extends CI_Controller
                                         'file_tmp'=>$small_file,
                                         'mod'=>1
                                         );
-                                        //Делаю запись в БД
+                                        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
                                        $this->gallery_model->addImg($dataInsert);   
-                                        //Удаляю исходнюю картинку
+                                        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                      
                                         unlink($item['full_path']); 
                                                                   
                                   } 
                                   else
                                   {
-                                    $result.="Фотография '".$array_name[$i]." 'не загрузилась!<br>";
+                                    $result.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$array_name[$i]." 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";
                                   } 
                                  $i++;  
                                 }
@@ -485,22 +486,22 @@ class Gallery extends CI_Controller
                        }
                        else
                        {
-                      //сообщение, что ошибки не указанно ни одной картинки
+                      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                      $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules'));
                        } 
                    }
                     else
                     { 
-                      //сообщение, что ошибки при вводе данных
+                      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                      $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules'));
                      
                     }   
-                 //Выбираю контент из папки. 
+                 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. 
                  $data['content_list'] = $this->gallery_model->getGallery($dir);        
              }
              else
              { 
-             //сообщение, что нет папки, куда будут заливаться фото
+             //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
              $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_dir'));
              $name='gallery_dir';
              $data['dir_list']=$this->gallery_model->get_dir('img');  
@@ -511,7 +512,7 @@ class Gallery extends CI_Controller
                   
  }
     
-    //Функция добавляет картинку для видео превью на сервер, делает превью и делает запись в БД про видео ролик
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public function uploadVideo($dir='')
     {       
           
@@ -520,16 +521,16 @@ class Gallery extends CI_Controller
          $name='video/add';  
         
         
-         //Выбираю данные по папке из БД 
+         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ 
         $data['section']= $this->gallery_model->getSelection($dir);  
-          //есть папка, в которую заливать видеоролик?
+          //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
         if(!empty($data['section']))
         {
                  
-            //есть ошибки при вводе данных?
+            //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ?
               if($this->form_validation->run('addVid')==TRUE)
              {
-                            //Заливаю картинку   впапку temp       
+                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅпїЅпїЅпїЅ temp       
                              $config['upload_path'] = './upload/temp/';
                             //$config['allowed_types'] = 'gif|jpg|png|jpeg';
                              $config['allowed_types'] = '*';
@@ -542,19 +543,19 @@ class Gallery extends CI_Controller
                           
                             $result='';
                             $i=0; 
-                          //указал ли пользователь вообще файлы с картинками?
+                          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
                             if(!empty($array_img))
                             {                              
                               $array_name = $this->input->post('name');
                               $array_code = $this->input->post('code_video');
-                                //смотрю массив результатов при заливке фото
+                                //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                               $this->load->library('image_lib'); 
                               foreach($array_img as $item)
                                 {
                                   if(empty($item['error']))
                                   {
-                                  $result.="Видеоролик '".$array_name[$i]."' загрузилась успешно!<br>";  
-                                         //Формирую превьюшку
+                                  $result.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$array_name[$i]."' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";  
+                                         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                          $unic_pre=time().mt_rand(0,1000);
                                          $small_file = $item['raw_name']."_".$unic_pre."_thumb".$item['file_ext'];
                                          $config['image_library'] = 'gd2'; 
@@ -567,7 +568,7 @@ class Gallery extends CI_Controller
                                          $this->image_lib->initialize($config);
                                          $this->image_lib->resize();     
                                        
-                                        //Формирую данные для записи в БД 
+                                        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ 
                                         $dataInsert=array(
                                         'section_id'=>$dir,
                                         'type'=> $data['section']['type'],
@@ -578,17 +579,17 @@ class Gallery extends CI_Controller
                                         'mod'=>1
                                         );
                                         
-                                        //Делаю запись в БД
+                                        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
                                        $this->gallery_model->addImg($dataInsert);   
                                        
-                                        //Удаляю исходнюю картинку                                     
+                                        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                     
                                         unlink($item['full_path']); 
                                         
                                             
                                   } 
                                   else
                                   {
-                                    $result.="Видеоролик '".$array_name[$i]." 'не загрузилась!<br>";
+                                    $result.="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '".$array_name[$i]." 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!<br>";
                                   } 
                                   $i++;
                                 }
@@ -598,22 +599,22 @@ class Gallery extends CI_Controller
                           }
                           else
                           {
-                            //сообщение, что ошибки не указанно ни одной картинки
+                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                             $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules'));   
                           }
              }
              else
              {
-             //сообщение, что ошибки при вводе данных
+             //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
              $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_rules'));  
              }                
-         //Выбираю контент из папки. 
+         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. 
           $data['content_list'] = $this->gallery_model->getGallery($dir);  
        }
        else
        {  
                 
-       //сообщение, что нет папки, куда будут заливаться фото
+       //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
        $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_dir'));
        $name='gallery_dir';
        $data['dir_list']=$this->gallery_model->get_dir('img');
@@ -624,17 +625,17 @@ class Gallery extends CI_Controller
     
     
         
-    //функция удаляет картинку/видео/контент
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   	public function delete($content_id)
     {   
         $data = array();
        
-        //Выбираю все данные по данному контенту, что бы узнать его section_id 
-        //(ID папки в которой он находится, что бы в результате 
-        //вывести весь контент папки)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ section_id 
+        //(ID пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
         $dataById = $this->gallery_model->getDataById($content_id);
        
-        //делаю  проверку на тип котента, что выводит определенный    вид
+        //пїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ    пїЅпїЅпїЅ
              if(!empty($dataById['type']) && !empty($dataById['section_id']))
                 {
                     switch($dataById['type']){
@@ -655,7 +656,7 @@ class Gallery extends CI_Controller
                      ($dataById['type']=='img')? 
                      unlink(DROOT.'/upload/real/'.$dataById['file']):false;
                     $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_result_title'),'popup_text'=>$this->lang->line('gallery_msg_true_delete'));    
-                 //Выбираю контент из папки.
+                 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
                 
                  $data['section']= $this->gallery_model->getSelection($dataById['section_id']);
                   $data['id_dir']=$dataById['section_id'];                 
@@ -663,7 +664,7 @@ class Gallery extends CI_Controller
              }
               else
                {
-                //сообщение, что нет такой записи для удаления
+                //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 $popup_info=array('popup_title'=>$this->lang->line('gallery_msg_error_title'),'popup_text'=>$this->lang->line('gallery_msg_false_content') ); 
                 $name='gallery_dir';
                 $data['dir_list']=$this->gallery_model->get_dir('img');     
